@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024">
+    <link rel="stylesheet" th:href="@{/css/startPage.css}"
+          href="../static/css/startPage.css">
+    <link rel="icon" th:href="@{/img/element_icon.png}"
+          href="../static/img/element_icon.png">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <img th:src="@{/img/element_logo.png}"
+                     src="../static/img/element_logo.png" alt="logo" class="element_logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="main_img">
+                <img th:src="@{/img/element_img.png}"
+                     src="../static/img/element_img.png" alt="logo" class="element_img">
+                <a href="#" class="btn btn_sign_in">Sign in</a>
+                <a href="#" class="btn btn_sign_up">Sign up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
