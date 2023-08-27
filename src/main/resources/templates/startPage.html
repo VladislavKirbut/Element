@@ -27,8 +27,10 @@
             <div class="main_img">
                 <img th:src="@{/img/element_img.png}"
                      src="../static/img/element_img.png" alt="logo" class="element_img">
-                <a href="#" class="btn btn_sign_in">Sign in</a>
-                <a href="#" class="btn btn_sign_up">Sign up</a>
+                <a href="signInPage.html" class="btn btn_sign_in"
+                   th:href="@{/element/signIn}">Sign in</a>
+                <a href="signUpPage.html" class="btn btn_sign_up"
+                    th:href="@{/element/signUp}">Sign up</a>
             </div>
         </div>
     </div>

@@ -7,6 +7,14 @@ body {
     background-color: #d7d6d6;
 }
 
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+}
+
 .container {
     width: 90%;
     margin: 0 auto;
@@ -41,11 +49,9 @@ body {
     width: 110px;
     padding: 20px 40px;
     border-radius: 10px;
-    background-color: red;
 }
 
 .btn_sign_in {
-    text-decoration: none;
     position: absolute;
     background-color: #2be382;
     box-shadow: 5px -1.5px 50px 15px #23c26d;

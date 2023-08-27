@@ -20,7 +20,7 @@ public class Users {
     private UUID id;
 
     @OneToOne(mappedBy = "users", fetch = FetchType.LAZY, optional = false)
-    private AuthorizationData authorizationData;
+    private AuthenticationData authenticationData;
 
     @Column(name = "name", nullable = false)
     private String name;

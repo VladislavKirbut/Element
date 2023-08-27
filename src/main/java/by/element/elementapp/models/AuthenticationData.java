@@ -11,15 +11,15 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "authorization_data")
-public class AuthorizationData {
+@Table(name = "authentication_data")
+public class AuthenticationData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "users_id")
     private Users users;
 

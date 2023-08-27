@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+body {
+    background-color: #d7d6d6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.logo {
+    min-height: 80px;
+    margin-top: 30px;
+}
+
+.element_logo {
+    height: 150px;
+}
+
+.main {
+    height:300px;
+}
+
+.main_img {
+    position: relative;
+    height: 50px;
+    width:60%;
+    margin: 0 auto;
+}
+
+.element_img {
+    height: 600px;
+    margin: auto;
+}
+
+.registration_block {
+    position: absolute;
+    width: 80%;
+    top:30px;
+    left:10%;
+}
+
+.registration_form {
+    border-radius: 10px;
+}
+
+.form_name {
+    display: block;
+    text-align: center;
+    padding: 20px 0 40px;
+    font-size: 40px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    color: #21ff99;
+}
+
+.input_field {
+    display: block;
+    height:40px;
+    width:350px;
+    border-radius: 5px;
+    border: 1px solid #b0adad;
+    padding-left: 5px;
+    text-align: center;
+    margin: 0 auto 20px;
+}
+
+.input_field:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.btn {
+    width: 190px;
+    padding: 10px 40px;
+    border-radius: 10px;
+}
+
+.form_sign_in {
+    display: block;
+    margin: 60px auto 0;
+    background-color: #2be382;
+    box-shadow: 5px -1.5px 40px 3px #23c26d;
+    transition: 1s;
+    color: white;
+    font-weight: bold;
+    font-family: Arial sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+.form_content {
+    margin-left: 160px;
+    font-family: Arial sans-serif;
+}
+
+.form_link {
+    color: #737373;
+    text-decoration: underline;
+}
+
+.form_title {
+    color: #737373;
+
+}
+
+.form_sign_in:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
