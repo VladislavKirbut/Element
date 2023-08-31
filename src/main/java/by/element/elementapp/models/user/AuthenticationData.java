@@ -1,26 +1,27 @@
-package by.element.elementapp.models;
+package by.element.elementapp.models.user;
 
+import by.element.elementapp.models.user.Users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import lombok.experimental.Accessors;
 import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Accessors(chain = true)
 @Table(name = "authentication_data")
 public class AuthenticationData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
-    private UUID id;
+    @Column(name = "users_id", nullable = false)
+    private UUID usersId;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "users_id")
+    @MapsId
     private Users users;
 
     @Column(name = "phone_number", unique = true, nullable = false)

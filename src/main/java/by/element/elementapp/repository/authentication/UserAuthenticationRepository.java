@@ -1,7 +1,7 @@
 package by.element.elementapp.repository.authentication;
 
-import by.element.elementapp.models.AuthenticationData;
-import by.element.elementapp.models.Users;
+import by.element.elementapp.models.user.AuthenticationData;
+import by.element.elementapp.models.user.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -48,4 +48,7 @@ public class UserAuthenticationRepository implements AuthenticationRepository {
         return query.getResultStream().findFirst();
     }
 
+    public void createUser(Users user) {
+        entityManager.persist(user);
+    }
 }
