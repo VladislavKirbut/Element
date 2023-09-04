@@ -1,6 +1,6 @@
 package by.element.elementapp.exception.authentication;
 
-public class AuthenticationException extends Exception {
+public class AuthenticationException extends RuntimeException {
     private final String message;
 
     public AuthenticationException(String message) {

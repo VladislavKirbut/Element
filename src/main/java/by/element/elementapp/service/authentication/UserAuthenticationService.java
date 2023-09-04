@@ -2,64 +2,82 @@ package by.element.elementapp.service.authentication;
 
 
 import by.element.elementapp.exception.authentication.AuthenticationException;
+import by.element.elementapp.models.security.AccessToken;
+import by.element.elementapp.models.security.UserPrincipal;
 import by.element.elementapp.models.user.AuthenticationData;
 import by.element.elementapp.models.user.Users;
-import by.element.elementapp.models.user.AuthenticationDto;
 import by.element.elementapp.models.user.AuthenticationSignInDto;
 import by.element.elementapp.models.user.AuthenticationSignUpDto;
-import by.element.elementapp.models.user.UserDto;
 import by.element.elementapp.repository.authentication.UserAuthenticationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionOperations;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserAuthenticationService implements AuthenticationService {
     private final UserAuthenticationRepository authenticationRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AccessTokenService accessTokenService;
+    private final TransactionOperations txOps;
+
     @Transactional
     @Override
-    public AuthenticationDto isUserAuthenticated(AuthenticationSignInDto authorizationData) throws AuthenticationException {
-        if (authenticationRepository.getAuthorizationDataByPhoneNumber(authorizationData.getPhoneNumber()).isEmpty())
-            throw new AuthenticationException("User doesn't exist");
-
+    public AccessToken signIn(AuthenticationSignInDto signInDto) throws AuthenticationException {
         AuthenticationData userData = authenticationRepository.getAuthorizationDataByPhoneNumber(
-                authorizationData.getPhoneNumber()
-                ).get();
+                signInDto.getPhoneNumber()
+        ).orElseThrow(() -> new AuthenticationException("User doesn't exist"));
 
-        boolean isPasswordCorrect =  passwordEncoder.matches(
-                authorizationData.getPassword(),
+        boolean isPasswordCorrect = passwordEncoder.matches(
+                signInDto.getPassword(),
                 userData.getPassword()
         );
 
-        if (!isPasswordCorrect) throw new AuthenticationException("Incorrect password");
-        return AuthenticationDto.from(userData);
+        if (!isPasswordCorrect) throw new AuthenticationException("Incorrect login or password.");
+
+        UserPrincipal userPrincipal = UserPrincipal.from(userData.getUsers());
+
+        return accessTokenService.generateToken(userPrincipal);
     }
 
-    public UserDto signUp(AuthenticationSignUpDto authenticationSignUpDto) {
-        String hashedPassword = passwordEncoder.encode(authenticationSignUpDto.getPassword());
+    @Transactional
+    @Override
+    public AccessToken signUp(AuthenticationSignUpDto signUpDto) {
+        String hashedPassword = passwordEncoder.encode(signUpDto.getPassword());
 
-        Users user = create(authenticationSignUpDto, hashedPassword);
-        return UserDto.from(user);
+        Users user = create(signUpDto, hashedPassword);
+
+        UserPrincipal userPrincipal = new UserPrincipal(user.getId());
+        return accessTokenService.generateToken(userPrincipal);
     }
 
-    private Users create(AuthenticationSignUpDto authenticationSignUpDto, String hashedPassword) {
+    private Users create(AuthenticationSignUpDto signUpDto, String hashedPassword) {
 
-        Users user = new Users()
-                .setAuthenticationData(
-                        new AuthenticationData()
-                                .setPhoneNumber(authenticationSignUpDto.getPhoneNumber())
-                                .setPassword(hashedPassword)
-                )
-                .setName(authenticationSignUpDto.getName())
-                .setSurname(authenticationSignUpDto.getSurname())
-                .setEmail(authenticationSignUpDto.getEmail());
+        return txOps.execute(tx -> {
+            boolean isUserExist = authenticationRepository.getAuthorizationDataByPhoneNumber(
+                    signUpDto.getPhoneNumber()
+            ).isPresent();
 
-        authenticationRepository.createUser(user);
+            if (isUserExist)
+                throw new AuthenticationException("User already exist.");
 
-        return user;
+            Users user = new Users()
+                    .setAuthenticationData(
+                            new AuthenticationData()
+                                    .setPhoneNumber(signUpDto.getPhoneNumber())
+                                    .setPassword(hashedPassword)
+                    )
+                    .setName(signUpDto.getName())
+                    .setSurname(signUpDto.getSurname())
+                    .setEmail(signUpDto.getEmail());
+
+            authenticationRepository.createUser(user);
+
+            return user;
+        });
     }
-
 }

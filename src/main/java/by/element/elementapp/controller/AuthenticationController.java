@@ -1,8 +1,8 @@
 package by.element.elementapp.controller;
 
 import by.element.elementapp.exception.authentication.AuthenticationException;
+import by.element.elementapp.models.security.AccessToken;
 import by.element.elementapp.models.user.AuthenticationSignInDto;
-import by.element.elementapp.models.user.AuthenticationDto;
 import by.element.elementapp.models.user.AuthenticationSignUpDto;
 import by.element.elementapp.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -14,13 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/element")
 public class AuthenticationController {
-
     private final AuthenticationService authenticationService;
 
     @GetMapping("/startPage")
@@ -45,13 +43,12 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signIn")
-    public ResponseEntity<?> checkRegistry(@ModelAttribute AuthenticationSignInDto authorizationData, UriComponentsBuilder urlBuilder) throws AuthenticationException {
-
-        AuthenticationDto userAuthenticated = authenticationService.isUserAuthenticated(authorizationData);
+    public ResponseEntity<?> signIn(@ModelAttribute AuthenticationSignInDto signInDto, UriComponentsBuilder urlBuilder) throws AuthenticationException {
+        AccessToken token = authenticationService.signIn(signInDto);
 
         URI uri = urlBuilder
                 .path("/element/chatPage")
-                .queryParam("AuthenticationDto", userAuthenticated)
+                .queryParam("AccessToken", token)
                 .build()
                 .toUri();
 
@@ -61,18 +58,13 @@ public class AuthenticationController {
                 .build();
     }
 
-    @GetMapping("/chatPage")
-    public ModelAndView getChatPage(@RequestParam AuthenticationDto authenticationDto) {
-        return new ModelAndView(
-                "chatPage",
-                Map.of("authenticationDto", authenticationDto)
-        );
-    }
+    @PostMapping("/signUp")
+    public ResponseEntity<?> signUp(@ModelAttribute AuthenticationSignUpDto authenticationSignUpDto, UriComponentsBuilder urlBuilder) {
 
-/*    @PostMapping("/signUp")
-    public ResponseEntity<?> userRegister(@ModelAttribute AuthenticationSignUpDto authenticationSignUpDto, UriComponentsBuilder urlBuilder) {
+        AccessToken token = authenticationService.signUp(authenticationSignUpDto);
         URI uri = urlBuilder
                 .path("/element/chatPage")
+                .queryParam("AccessToken", token)
                 .build()
                 .toUri();
 
@@ -80,5 +72,5 @@ public class AuthenticationController {
                 .status(HttpStatus.FOUND)
                 .location(uri)
                 .build();
-    }*/
+    }
 }
