@@ -48,13 +48,14 @@ public class AuthenticationController {
 
         URI uri = urlBuilder
                 .path("/element/chatPage")
-                .queryParam("AccessToken", token)
+                .queryParam("userId", token.getPrincipal().getId())
                 .build()
                 .toUri();
 
         return ResponseEntity
                 .status(HttpStatus.FOUND)
                 .location(uri)
+                .header("Authorization", token.toString())
                 .build();
     }
 
@@ -62,15 +63,17 @@ public class AuthenticationController {
     public ResponseEntity<?> signUp(@ModelAttribute AuthenticationSignUpDto authenticationSignUpDto, UriComponentsBuilder urlBuilder) {
 
         AccessToken token = authenticationService.signUp(authenticationSignUpDto);
+
         URI uri = urlBuilder
                 .path("/element/chatPage")
-                .queryParam("AccessToken", token)
+                .queryParam("userId", token.getPrincipal().getId())
                 .build()
                 .toUri();
 
         return ResponseEntity
                 .status(HttpStatus.FOUND)
                 .location(uri)
+                .header("Authorization", token.toString())
                 .build();
     }
 }

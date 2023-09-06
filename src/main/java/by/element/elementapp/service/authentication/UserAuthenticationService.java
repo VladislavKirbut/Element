@@ -28,18 +28,18 @@ public class UserAuthenticationService implements AuthenticationService {
     @Transactional
     @Override
     public AccessToken signIn(AuthenticationSignInDto signInDto) throws AuthenticationException {
-        AuthenticationData userData = authenticationRepository.getAuthorizationDataByPhoneNumber(
+        Users userData = authenticationRepository.getUserByPhoneNumber(
                 signInDto.getPhoneNumber()
         ).orElseThrow(() -> new AuthenticationException("User doesn't exist"));
 
         boolean isPasswordCorrect = passwordEncoder.matches(
                 signInDto.getPassword(),
-                userData.getPassword()
+                userData.getAuthenticationData().getPassword()
         );
 
         if (!isPasswordCorrect) throw new AuthenticationException("Incorrect login or password.");
 
-        UserPrincipal userPrincipal = UserPrincipal.from(userData.getUsers());
+        UserPrincipal userPrincipal = UserPrincipal.from(userData);
 
         return accessTokenService.generateToken(userPrincipal);
     }
@@ -58,7 +58,7 @@ public class UserAuthenticationService implements AuthenticationService {
     private Users create(AuthenticationSignUpDto signUpDto, String hashedPassword) {
 
         return txOps.execute(tx -> {
-            boolean isUserExist = authenticationRepository.getAuthorizationDataByPhoneNumber(
+            boolean isUserExist = authenticationRepository.getUserByPhoneNumber(
                     signUpDto.getPhoneNumber()
             ).isPresent();
 

@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface AuthenticationRepository {
     void saveUserToDB(Users user);
     void removeUserFromDB(UUID id);
-    Optional<AuthenticationData> getAuthorizationDataByPhoneNumber(String phoneNumber);
+    Optional<Users> getUserByPhoneNumber(String phoneNumber);
 }

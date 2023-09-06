@@ -20,7 +20,6 @@ import java.util.UUID;
 public class AccessTokenJwtService implements AccessTokenService {
     private final AccessTokenProperties tokenProperties;
     private final Algorithm jwtAlgorithm;
-
     private final JWTVerifier jwtVerifier;
 
     @Override

@@ -32,20 +32,16 @@ public class UserAuthenticationRepository implements AuthenticationRepository {
     }
 
     @Override
-    public Optional<AuthenticationData> getAuthorizationDataByPhoneNumber(String phoneNumber) {
-        TypedQuery<AuthenticationData> query = entityManager.createQuery(
+    public Optional<Users> getUserByPhoneNumber(String phoneNumber) {
+         return entityManager.createQuery(
                 """
-                            SELECT AuthenticationData
-                            FROM AuthenticationData authenticationData
-                            JOIN FETCH authenticationData.users
-                            WHERE authenticationData.phoneNumber = :phoneNumber
+                            SELECT user
+                            FROM Users user
+                            LEFT JOIN FETCH user.authenticationData
+                            WHERE user.authenticationData.phoneNumber = :phoneNumber
                             """,
-                AuthenticationData.class
-        );
-
-        query.setParameter("phoneNumber", phoneNumber);
-
-        return query.getResultStream().findFirst();
+                Users.class
+        ).setParameter("phoneNumber", phoneNumber).getResultStream().findFirst();
     }
 
     public void createUser(Users user) {

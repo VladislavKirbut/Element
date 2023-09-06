@@ -6,7 +6,7 @@ import java.time.Instant;
 
 @Value
 public class AccessToken {
-    String value; // строка (header, payload, signature)
+    String value;
     AccountPrincipal principal;
     Instant issuedAt;
     Instant expiresAt;
