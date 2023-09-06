@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 7%;
+    background-color: #31ff9e;
+}
+
+.header_profile {
+    min-height: 50px;
+    width:50px;
+}
+
+.header_profile .fa-user {
+    padding-left: 24px;
+    padding-top: 13px;
+}
+
+.header_profile .fa-regular {
+    font-size: 25px;
+    color: #d7d6d6;
+    transition: 0.8s;
+}
+
+.header_profile .fa-user:hover {
+    cursor:pointer;
+    color: #027741;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.chat {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.chat_bar {
+    background-color: yellow;
+    flex: 1;
+}
+
+.chat_rooms {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    background-color: #fff;
+    flex: 5;
+}
+
+.room {
+    background-color: pink;
+    height: 60px;
+}
+
+.room:last-child {
+    height: 97px;
+    background-color: green;
+}
+
+.chats {
+    display: block;
+    overflow: scroll;
+    min-height: 100%;
+}
+
+.chats::-webkit-scrollbar {
+    width: 3px;
+}
+
+.chats::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+.chats::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #1aef0b, #a8e5ac);
+}
+
+.chat_message {
+    flex: 3;
+    background-color: red;
+}
+

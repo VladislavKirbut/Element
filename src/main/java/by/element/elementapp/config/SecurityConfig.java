@@ -30,7 +30,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(config -> config
                         .loginPage("/element/signIn")
-                        .defaultSuccessUrl("/element/chatPage", true)
                 )
                 .authorizeHttpRequests(config -> config
                         .requestMatchers(HttpMethod.GET, "/element/startPage").permitAll()
@@ -42,7 +41,7 @@ public class SecurityConfig {
                                 StaticResourceLocation.CSS,
                                 StaticResourceLocation.JAVA_SCRIPT
                         )).permitAll()
-                        .requestMatchers("/**").hasRole(AccountRole.USER.name())
+                        .requestMatchers("/element/**").authenticated()
                 )
                 .addFilterAfter(new AccessTokenAuthenticationFilter(accessTokenService), BasicAuthenticationFilter.class)
                 .build();
