@@ -6,6 +6,7 @@ import by.element.elementapp.models.user.AuthenticationSignInDto;
 import by.element.elementapp.models.user.AuthenticationSignUpDto;
 import by.element.elementapp.service.authentication.AuthenticationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -48,14 +49,12 @@ public class AuthenticationController {
 
         URI uri = urlBuilder
                 .path("/element/chatPage")
-                .queryParam("userId", token.getPrincipal().getId())
                 .build()
                 .toUri();
 
         return ResponseEntity
                 .status(HttpStatus.FOUND)
                 .location(uri)
-                .header("Authorization", token.toString())
                 .build();
     }
 
@@ -73,7 +72,7 @@ public class AuthenticationController {
         return ResponseEntity
                 .status(HttpStatus.FOUND)
                 .location(uri)
-                .header("Authorization", token.toString())
+                .header(HttpHeaders.AUTHORIZATION, token.toString())
                 .build();
     }
 }

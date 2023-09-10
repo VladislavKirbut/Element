@@ -8,19 +8,16 @@ import by.element.elementapp.models.user.AuthenticationData;
 import by.element.elementapp.models.user.Users;
 import by.element.elementapp.models.user.AuthenticationSignInDto;
 import by.element.elementapp.models.user.AuthenticationSignUpDto;
-import by.element.elementapp.repository.authentication.UserAuthenticationRepository;
+import by.element.elementapp.repository.authentication.AuthenticationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionOperations;
-
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class UserAuthenticationService implements AuthenticationService {
-    private final UserAuthenticationRepository authenticationRepository;
+    private final AuthenticationRepository authenticationRepository;
     private final PasswordEncoder passwordEncoder;
     private final AccessTokenService accessTokenService;
     private final TransactionOperations txOps;
@@ -51,7 +48,7 @@ public class UserAuthenticationService implements AuthenticationService {
 
         Users user = create(signUpDto, hashedPassword);
 
-        UserPrincipal userPrincipal = new UserPrincipal(user.getId());
+        UserPrincipal userPrincipal = UserPrincipal.from(user);
         return accessTokenService.generateToken(userPrincipal);
     }
 

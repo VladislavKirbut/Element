@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-        lang="en">
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Element</title>
@@ -13,16 +13,101 @@
           href="../static/images/element_icon.png">
 </head>
 <body>
+
     <div class="header">
-            <div class="header_profile">
-                <i class="fa-regular fa-user"></i>
-            </div>
+        <div class="header_profile">
+            <i class="fa-regular fa-user fa-loc"></i>
+        </div>
+        <div class="user_data">
+            <!--/*@thymesVar id="userProfile" type="by.element.elementapp.models.user.UserProfileDto"*/-->
+            <span th:text="${userProfile.getName()}" class="header-profile">Username</span>
+        </div>
     </div>
 
     <div class="main">
         <div class="chat">
             <div class="chat_bar">
+                <div class="menu_bar">
+                    <div class="menu">
+                        <form enctype="multipart/form-data" method="post" class="form">
+                            <input type="file" name="file" class="addfile">
+                            <div class="img_block">
+                                <i class="fa fa-plus fa-position" aria-hidden="true"></i>
+                            </div>
+                            <input type="submit" class="form_btn_apply">
+                            <div class="apply_btn">
+                                <i class="fa fa-check check_pos" aria-hidden="true"></i>
+                            </div>
+                            <button type="reset" class="form_btn_reset"></button>
+                            <div class="del_btn">
+                                <i class="fa fa-trash-o cross_pos" id="reset-button" aria-hidden="true"></i>
+                            </div>
+                        </form>
 
+                        <div class="list_menu">
+                            <ul>
+                                <li>
+                                    <i class="fa fa-user" id="item" aria-hidden="true"></i>
+                                    <span class="title">Profile</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <span class="title">Contacts</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                    <span class="title">New folder</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-cog" aria-hidden="true"></i>
+                                    <span class="title">Settings</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="folders">
+                    <div class="folders_list">
+                        <a href="#">
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">All chats</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">Usually</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">Sport</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">All chats</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">All chats</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">All chats</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="chat_rooms">
@@ -92,8 +177,27 @@
 
         </div>
     </div>
+
+    <!--Modal-->
+        <div class="window">
+            <div class="title">Profile</div>
+            <i class="fa fa-times window-cross modal-close" aria-hidden="true"></i>
+            <div class="content">
+                <ul>
+                    <li class="profile-name">Name: </li>
+                    <li class="profile-surname">Surname:</li>
+                    <li class="profile-email">Email:</li>
+                    <li class="profile-phone_number">Phone number:</li>
+                </ul>
+            </div>
+        </div>
+
+    <div class="overlay overlay-modal"></div>
+
 </body>
     <script src="https://kit.fontawesome.com/0d84691a96.js" crossorigin="anonymous"></script>
     <script type="text/javascript" th:src="@{/js/chatPage.js}"
             src="../static/js/chatPage.js"></script>
+    <script type="text/javascript" th:src="@{/js/menuPage.js}"
+            src="../static/js/menuPage.js"></script>
 </html>

@@ -1,10 +1,8 @@
 package by.element.elementapp.repository.authentication;
 
-import by.element.elementapp.models.user.AuthenticationData;
 import by.element.elementapp.models.user.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +42,7 @@ public class UserAuthenticationRepository implements AuthenticationRepository {
         ).setParameter("phoneNumber", phoneNumber).getResultStream().findFirst();
     }
 
+    @Override
     public void createUser(Users user) {
         entityManager.persist(user);
     }
