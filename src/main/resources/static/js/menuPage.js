@@ -4,100 +4,69 @@ window.addEventListener('DOMContentLoaded', function() {
     let basicUrl = 'https://localhost:8080/element/chatPage/';
 
     let listItem = document.querySelectorAll(".title"),
-        windowElement = document.querySelector(".window"),
-        windowClose = document.querySelector(".modal-close"),
-        overlay = document.querySelector(".overlay-modal");
+        windowElement = document.querySelectorAll(".window"),
+        windowClose = document.querySelectorAll(".modal-close"),
+        overlay = document.querySelector(".overlay-modal"),
+        folderList = document.querySelector(".folder-link"),
+        secondModal = document.querySelector(".window-2");
+
 
     function menuBehavior() {
-        listItem.forEach(item => {
+        listItem.forEach((item, i) => {
             item.addEventListener("click", (e) => {
                 e.preventDefault();
-                showModal();
-                getForm(item);
+                showModal(i);
             });
         });
     }
 
-    windowClose.addEventListener("click", (e) => {
-        closeModal();
-    });
+    function getFolders() {
+        folderList.addEventListener("click", (e) => {
+            e.preventDefault();
+            secondModal.classList.add("show");
+        })
+    }
+
+    function clickOnCloseBtn() {
+        windowClose.forEach((closeBtn, i) => {
+            closeBtn.addEventListener("click", (e) => {
+                closeModal(i);
+                let showWindow = document.querySelector(".window-2.show");
+                if (showWindow != null && showWindow.classList.contains("show")) {
+                    showWindow.classList.remove("show");
+                }
+            });
+        });
+    }
 
     overlay.addEventListener('click', () => {
         document.querySelector(".window.show").classList.remove("show");
+        let showWindow = document.querySelector(".window-2.show");
+        if (showWindow != null && showWindow.classList.contains("show")) {
+            showWindow.classList.remove("show");
+        }
         overlay.classList.remove("show");
-    })
+    });
 
-    document.addEventListener('keydown', (e) => {
+    document.body.addEventListener('keydown', (e) => {
         if (e.code === "Escape") {
-            closeModal();
+            document.querySelector('.window.show').classList.remove('show');
+            document.querySelector('.overlay').classList.remove('show');
+            document.querySelector('.window-2.show').classList.remove('show');
         }
     });
 
-    const postData = async (url) => {
-        const res = await fetch(url, {
-            method: "GET",
-            headers: {
-                'Content-type': 'application/json'
-            }
-        });
-        return await res.json();
-    }
-
-    function getForm(listItem) {
-        let url;
-        if (listItem.innerHTML === "Profile") {
-            url = 'profile';
-            postData(url)
-                .then(data => {
-                    console.log(data);
-            });
-        } else if(listItem.innerHTML === "Contacts") {
-            url = 'contacts';
-            getProfileForm(url);
-        } else if (listItem.innerHTML === "New folder") {
-            url = 'add-folder';
-            getProfileForm(url);
-        } else {
-            url = 'settings';
-            getProfileForm(url);
-        }
-    }
-
-/*    function sendRequest(url) {
-
-/!*        let response;
-
-        let xch = new XMLHttpRequest();
-        xch.open("GET", basicUrl + url);
-        xch.responseType = 'json';
-
-        xch.send();
-
-        xch.onload = function() {
-            response = JSON.parse(xch.response);
-        }
-
-        return response;*!/
-    }*/
-
-
-    function getProfileForm(url) {
-        let response = sendRequest(url);
-        let array = {};
-        for (let key in response) {
-            array.push(response[key]);
-        }
-    }
-
-    function showModal() {
-        windowElement.classList.add("show");
+    function showModal(modelOrder) {
+        windowElement[modelOrder].classList.add("show");
         overlay.classList.add("show");
     }
 
-    function closeModal() {
-        windowElement.classList.remove("show");
+    function closeModal(modelOrder) {
+        windowElement[modelOrder].classList.remove("show");
         overlay.classList.remove("show");
     }
 
     menuBehavior();
+    clickOnCloseBtn();
+    getFolders();
 });

@@ -6,6 +6,8 @@
     text-decoration: none;
 }
 
+/*Header*/
+
 .header {
     display: flex;
     flex-direction: row;
@@ -38,8 +40,14 @@
     padding-right: 15px;
 }
 
-/*Profile*/
-.user_data {
+.header-logo {
+    height: 45px;
+    width: 110px;
+    padding-top: 4px;
+    margin: 0 37%;
+}
+
+.header-username {
     margin-top: 13.5px;
     min-width: 80px;
 }
@@ -50,6 +58,7 @@
     color: white;
 }
 
+/*Main*/
 .main {
     display: flex;
     flex-direction: row;
@@ -114,80 +123,90 @@
     background-color: white;
 }
 
-/*Image*/
-.img_block {
+/*Avatar*/
+.ava_image {
+    position: relative;
+}
+
+.file-action {
+    position: absolute;
+    right: 28%;
+    bottom: -11px;
+}
+
+.form-file_block {
+    position: relative;
     width: 130px;
     height: 130px;
     border-radius: 70px;
     border: 2px dashed #282727;
 }
 
+.menu-form_file {
+    display: block;
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 70px;
+    border: 2px dashed #282727;
+    left: -2px;
+    top: -2px;
+    opacity: 0;
+}
+
 .fa-position {
-    margin-left: 42px;
+    margin-left: 39px;
     font-size: 50px;
     margin-top: 37px;
     color: #282727;
 }
 
-.addfile {
-    display: block;
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    top: 67px;
-    border-radius: 70px;
-    border: 2px dashed black;
-    opacity: 0;
-}
-
-.addfile:hover {
+.menu-form_file:hover {
     cursor: pointer;
 }
 
-.form_btn_apply {
+.form_btn-apply {
     display: none;
-    position: absolute;
-    top: 178px;
-    right: 145px;
     width: 27px;
     height: 27px;
     border-radius: 70px;
     color: #2be382;
-    background-color: #2be382;
+    background-color: #08a94a;
     border: none;
 }
 
 .apply_btn {
     display: none;
-    position: absolute;
-    top: 182px;
-    right: 149px;
-    font-size: 20px;
+    font-size: 25px;
     color: white;
+    margin-bottom: 3px;
 }
 
-.form_btn_reset {
+.form_btn-reset {
     display: none;
-    position: absolute;
-    top: 178px;
-    right: 172px;
     width: 27px;
     height: 27px;
     border-radius: 70px;
     border: none;
     background-color: red;
+    padding-bottom: 2px;
 }
 
-.form_btn_reset:hover {
+.form_btn-reset:hover {
     cursor: pointer;
 }
 
 .cross_pos {
-    position: absolute;
-    top: 182px;
-    right: 176.9px;
-    font-size: 20px;
+    font-size: 15px;
     color: white;
+    padding-left: 3%;
+    padding-top: 13%;
+}
+
+.check_pos {
+    color: white;
+    padding-left: 1px;
+    padding-top: 3px;
 }
 
 .del_btn {
@@ -291,7 +310,7 @@
     margin-top: 70px;
 }
 .menu {
-    padding: 7vh 140px;
+    padding: 7vh 139px;
     background: rgba(20, 20, 20, 0.5);
     height: 100vh;
     border-right: 6px solid #fcfffc;
@@ -336,7 +355,8 @@
 }
 
 .window.show,
-.overlay.show{
+.window-2.show,
+.overlay.show {
     opacity: 1;
     visibility: visible;
 }
@@ -382,4 +402,116 @@
 
 .window ul li {
     padding-bottom: 20px;
+}
+
+/*Contacts*/
+
+.search_input {
+    width: 15rem;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    margin: 0 20px 0 30px;
+    padding-left: 10px;
+}
+
+.search_input:focus {
+    outline: 2px solid #24fa95;
+}
+
+.fa-search {
+    position: absolute;
+    left: 1.3rem;
+    top: 5.2rem;
+    color: #24fa95;
+}
+
+.search-form-btn {
+    width: 100px;
+    padding: 5px 15px;
+    background-color: #2be382;
+    border-radius: 5px;
+    border: none;
+    display: block;
+    margin: 20px auto 0;
+    box-shadow: 5px -1.5px 40px 3px #23c26d;
+    color: #fff;
+    transition: 1s all ease;
+    font-weight: bold;
+    font-family: Arial sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.search-form-btn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+/*New folder*/
+
+.folder-link {
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 60px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.folder-link:hover {
+    cursor: pointer;
+}
+
+.window-2 {
+    opacity: 0;
+    visibility: hidden;
+    min-height: 18rem;
+    width: 20rem;
+    position: fixed;
+    top: 50%;
+    left: 66.7%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+    transition: 0.3s all;
+    z-index: 30;
+    border-radius: 20px;
+    background: rgba(20, 20, 20, 0.6);
+    padding: 10px 15px;
+}
+
+.window_content {
+    margin-top: 30px;
+    position: relative;
+}
+
+.chat-item {
+    position: relative;
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+    background: rgba(20, 20, 20, 0.6);
+    border-radius: 10px;
+    margin-bottom: 6px;
+}
+
+.right-icon {
+    position: absolute;
+    right: 20px;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+.right-icon:hover {
+    cursor: pointer;
+}
+
+.delete-icon {
+    position: absolute;
+    right: 10px;
+    padding-top: 3px;
+}
+
+.delete-icon {
+    cursor: pointer;
 }

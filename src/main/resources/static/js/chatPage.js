@@ -1,11 +1,11 @@
  'use strict';
 
-let fileUploader = document.getElementsByClassName("addfile")[0],
-    form = document.getElementsByClassName("form")[0],
-    imgBlock = document.getElementsByClassName("img_block")[0],
-    plus = document.getElementsByClassName("fa")[0],
-    formBtn = document.getElementsByClassName("form_btn_apply")[0],
-    formBtnReset = document.getElementsByClassName("form_btn_reset")[0],
+let formImg = document.querySelector(".form-file_block"),
+    fileUploader = document.querySelector(".menu-form_file"),
+    fileAction = document.querySelector(".file-action"),
+    cameraIcon = document.getElementsByClassName("fa-camera")[0],
+    formBtnApply = document.getElementsByClassName("form_btn-apply")[0],
+    formBtnReset = document.getElementsByClassName("form_btn-reset")[0],
     formDelBtn = document.getElementsByClassName("del_btn")[0],
     applyBtn = document.getElementsByClassName("apply_btn")[0],
     crossPos = document.getElementsByClassName("cross_pos")[0],
@@ -15,41 +15,44 @@ let fileUploader = document.getElementsByClassName("addfile")[0],
 
 let image = null;
 
-fileUploader.addEventListener('change', (event) => {
-    const reader = new FileReader();
-    const files = event.target.files;
-    const file = files[0];
-    reader.readAsDataURL(file);
+function createImage() {
+    fileUploader.addEventListener('change', (event) => {
+        const reader = new FileReader();
+        const files = event.target.files;
+        const file = files[0];
+        reader.readAsDataURL(file);
 
-    reader.addEventListener('load', (event) => {
-        const img = document.createElement('img');
-        form.appendChild(img);
-        img.classList.add("image");
-        image = document.getElementsByClassName("image")[0];
-        img.src = event.target.result;
-        img.alt = file.name;
-        img.height = 130;
-        img.width = 130;
-        img.style.borderRadius = 70 + "px";
-        imgBlock.classList.remove("img_block");
-        plus.classList.remove("fa", "fa-plus", "fa-position");
-        formBtn.style.display = "block";
-        formBtnReset.style.display = "block";
-        formDelBtn.style.display = "block";
-        applyBtn.style.display = "block";
-        resetButtonIcon.classList.add("fa", "fa-trash-o", "cross_pos");
-        applyButtonIcon.classList.add("fa", "fa-check", "check_pos");
+        reader.addEventListener('load', (event) => {
+            const img = document.createElement('img');
+            formImg.appendChild(img);
+            img.classList.add("image");
+            image = document.querySelector(".image");
+            img.src = event.target.result;
+            img.alt = file.name;
+            img.height = 130;
+            img.width = 130;
+            img.style.borderRadius = 70 + "px";
+            formImg.classList.remove("form-file_block");
+            cameraIcon.classList.remove("fa", "fa-camera", "fa-position");
+            formBtnApply.style.display = "inline-block";
+            formBtnReset.style.display = "inline-block";
+            formDelBtn.style.display = "inline-block";
+            applyBtn.style.display = "inline-block";
+            resetButtonIcon.classList.add("fa", "fa-trash-o", "cross_pos");
+            applyButtonIcon.classList.add("fa", "fa-check", "check_pos");
+        });
     });
+}
 
     formBtnReset.addEventListener("click", evt => {
         image.remove();
         formDelBtn.value = null;
         fileUploader.value = fileUploader.defaultValue;
-        imgBlock.classList.add("img_block");
-        plus.classList.add("fa", "fa-plus", "fa-position");
+        formImg.classList.add("form-file_block");
+        cameraIcon.classList.add("fa", "fa-camera", "fa-position");
         formBtnReset.style.display = "none";
         resetButtonIcon.classList.remove("fa", "fa-trash-o", "cross_pos");
-        formBtn.style.display = "none";
+        formBtnApply.style.display = "none";
         applyButtonIcon.classList.remove("fa", "fa-check", "check_pos");
     });
 
@@ -57,11 +60,11 @@ fileUploader.addEventListener('change', (event) => {
         fileUploader.value = fileUploader.defaultValue;
         image.remove();
         formDelBtn.value = null;
-        imgBlock.classList.add("img_block");
-        plus.classList.add("fa", "fa-plus", "fa-position");
+        formImg.classList.add("form-file_block");
+        cameraIcon.classList.add("fa", "fa-camera", "fa-position");
         formBtnReset.style.display = "none";
         resetButtonIcon.classList.remove("fa", "fa-trash-o", "cross_pos");
-        formBtn.style.display = "none";
+        formBtnApply.style.display = "none";
         applyButtonIcon.classList.remove("fa", "fa-check", "check_pos");
     });
 
@@ -78,4 +81,5 @@ fileUploader.addEventListener('change', (event) => {
             return false;
         }
     }*/
-});
+
+ createImage();
