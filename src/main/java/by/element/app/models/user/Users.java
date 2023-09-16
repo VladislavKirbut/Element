@@ -1,6 +1,7 @@
 package by.element.app.models.user;
 
 import by.element.app.models.BaseEntity;
+import by.element.app.models.avatar.Avatar;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,9 @@ public class Users extends BaseEntity {
     @OneToOne(mappedBy = "users", optional = false, cascade = CascadeType.ALL)
     private AuthenticationData authenticationData;
 
+    @OneToOne(mappedBy = "user", optional = false, cascade = CascadeType.ALL)
+    private Avatar avatar;
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -30,6 +34,12 @@ public class Users extends BaseEntity {
     public Users setAuthenticationData(AuthenticationData authenticationData) {
         this.authenticationData = authenticationData;
         authenticationData.setUsers(this);
+        return this;
+    }
+
+    public Users setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+        avatar.setUser(this);
         return this;
     }
 }

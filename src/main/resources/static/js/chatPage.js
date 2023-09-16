@@ -34,12 +34,8 @@ function createImage() {
             img.style.borderRadius = 70 + "px";
             formImg.classList.remove("form-file_block");
             cameraIcon.classList.remove("fa", "fa-camera", "fa-position");
-            formBtnApply.style.display = "inline-block";
-            formBtnReset.style.display = "inline-block";
-            formDelBtn.style.display = "inline-block";
-            applyBtn.style.display = "inline-block";
-            resetButtonIcon.classList.add("fa", "fa-trash-o", "cross_pos");
-            applyButtonIcon.classList.add("fa", "fa-check", "check_pos");
+            fileUploader.style.display = "none";
+            fileAction.style.display = "block";
         });
     });
 }
@@ -50,10 +46,8 @@ function createImage() {
         fileUploader.value = fileUploader.defaultValue;
         formImg.classList.add("form-file_block");
         cameraIcon.classList.add("fa", "fa-camera", "fa-position");
-        formBtnReset.style.display = "none";
-        resetButtonIcon.classList.remove("fa", "fa-trash-o", "cross_pos");
-        formBtnApply.style.display = "none";
-        applyButtonIcon.classList.remove("fa", "fa-check", "check_pos");
+        fileAction.style.display = "none";
+        fileUploader.style.display = "block";
     });
 
     crossPos.addEventListener("click", evt => {
@@ -62,10 +56,7 @@ function createImage() {
         formDelBtn.value = null;
         formImg.classList.add("form-file_block");
         cameraIcon.classList.add("fa", "fa-camera", "fa-position");
-        formBtnReset.style.display = "none";
-        resetButtonIcon.classList.remove("fa", "fa-trash-o", "cross_pos");
-        formBtnApply.style.display = "none";
-        applyButtonIcon.classList.remove("fa", "fa-check", "check_pos");
+        fileAction.style.display = "none";
     });
 
 /*    async function elementUpdate(menuItem) {

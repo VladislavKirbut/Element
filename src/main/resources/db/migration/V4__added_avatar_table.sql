@@ -1,0 +1,4 @@
+CREATE TABLE avatar (
+    user_id UUID PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    path TEXT UNIQUE
+);

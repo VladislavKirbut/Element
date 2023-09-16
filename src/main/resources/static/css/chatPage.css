@@ -129,6 +129,7 @@
 }
 
 .file-action {
+    display: none;
     position: absolute;
     right: 28%;
     bottom: -11px;
@@ -166,7 +167,6 @@
 }
 
 .form_btn-apply {
-    display: none;
     width: 27px;
     height: 27px;
     border-radius: 70px;
@@ -176,14 +176,13 @@
 }
 
 .apply_btn {
-    display: none;
+    display: inline-block;
     font-size: 25px;
     color: white;
     margin-bottom: 3px;
 }
 
 .form_btn-reset {
-    display: none;
     width: 27px;
     height: 27px;
     border-radius: 70px;
@@ -199,18 +198,18 @@
 .cross_pos {
     font-size: 15px;
     color: white;
-    padding-left: 3%;
+    padding-right: -1%;
     padding-top: 13%;
 }
 
 .check_pos {
     color: white;
-    padding-left: 1px;
+    padding-left: 1.2%;
     padding-top: 3px;
 }
 
 .del_btn {
-    display: none;
+    display: inline-block;
 }
 
 .del_btn:hover {
