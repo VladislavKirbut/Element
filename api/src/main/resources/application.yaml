@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: local
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+access-token:
+  secret: randomSecret
+  time-to-live: P1D
+
+logging:
+  level:
+    sql: TRACE
+    root: WARN
+    web: TRACE
+  file:
+    path: /
+    name: element.log

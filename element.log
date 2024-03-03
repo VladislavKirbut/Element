@@ -1,0 +1,98 @@
+2024-03-04T00:56:53.923+03:00 TRACE 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Added existing Filter initializer bean 'securityFilterChainRegistration'; order=-100, resource=class path resource [org/springframework/boot/autoconfigure/security/servlet/SecurityFilterAutoConfiguration.class]
+2024-03-04T00:56:53.923+03:00 TRACE 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Added existing Servlet initializer bean 'dispatcherServletRegistration'; order=2147483647, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration.class]
+2024-03-04T00:56:53.945+03:00 TRACE 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'characterEncodingFilter'; order=-2147483648, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration.class]
+2024-03-04T00:56:53.945+03:00 TRACE 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'formContentFilter'; order=-9900, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class]
+2024-03-04T00:56:53.945+03:00 TRACE 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'requestContextFilter'; order=-105, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]
+2024-03-04T00:56:53.950+03:00 DEBUG 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2024-03-04T00:56:53.950+03:00 DEBUG 16260 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2024-03-04T00:56:56.596+03:00  WARN 16260 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-04T00:56:56.627+03:00  WARN 16260 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 296ea01b-7599-4bf5-bad1-0e0c2efce934
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-03-04T00:56:56.767+03:00 TRACE 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	b.e.a.c.AuthenticationController:
+	{GET [/element/signUp]}: getSignUpPage()
+	{POST [/element/signUp]}: signUp(AuthenticationSignUpDto,BindingResult,UriComponentsBuilder)
+	{GET [/element/startPage]}: showStartPage()
+	{POST [/element/signIn]}: signIn(AuthenticationSignInDto,BindingResult,UriComponentsBuilder)
+	{GET [/element/signIn]}: getSignInPage()
+2024-03-04T00:56:56.767+03:00 TRACE 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	b.e.a.c.ChatController:
+	{POST [/element/chatPage/add-folder]}: addFolder(UUID,FolderDto,UriComponentsBuilder)
+	{GET [/element/chatPage]}: getChatPage(UUID)
+2024-03-04T00:56:56.767+03:00 TRACE 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-03-04T00:56:56.801+03:00 TRACE 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.a.OpenApiWebMvcResource:
+	{GET [/v3/api-docs.yaml], produces [application/vnd.oai.openapi]}: openapiYaml(HttpServletRequest,String,Locale)
+	{GET [/v3/api-docs], produces [application/json]}: openapiJson(HttpServletRequest,String,Locale)
+2024-03-04T00:56:56.803+03:00 TRACE 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.u.SwaggerWelcomeWebMvc:
+	{GET [/swagger-ui.html]}: redirectToUi(HttpServletRequest)
+2024-03-04T00:56:56.804+03:00 TRACE 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.u.SwaggerConfigResource:
+	{GET [/v3/api-docs/swagger-config], produces [application/json]}: openapiJson(HttpServletRequest)
+2024-03-04T00:56:56.808+03:00 DEBUG 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 13 mappings in 'requestMappingHandlerMapping'
+2024-03-04T00:56:56.815+03:00 DEBUG 16260 --- [main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Detected 0 mappings in 'beanNameHandlerMapping'
+2024-03-04T00:56:56.939+03:00 TRACE 16260 --- [main] o.s.w.s.f.support.RouterFunctionMapping  : 0 RouterFunction(s) in 'routerFunctionMapping'
+2024-03-04T00:56:56.954+03:00 TRACE 16260 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/webjars/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-03-04T00:56:56.954+03:00 TRACE 16260 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-03-04T00:56:56.954+03:00 TRACE 16260 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/swagger-ui*/*swagger-initializer.js] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-03-04T00:56:56.954+03:00 TRACE 16260 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/swagger-ui*/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-03-04T00:56:56.954+03:00 DEBUG 16260 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-03-04T00:56:57.095+03:00 DEBUG 16260 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-03-04T00:56:57.189+03:00 DEBUG 16260 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-03-04T00:57:11.598+03:00 TRACE 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Added existing Filter initializer bean 'securityFilterChainRegistration'; order=-100, resource=class path resource [org/springframework/boot/autoconfigure/security/servlet/SecurityFilterAutoConfiguration.class]
+2024-03-04T00:57:11.600+03:00 TRACE 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Added existing Servlet initializer bean 'dispatcherServletRegistration'; order=2147483647, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration.class]
+2024-03-04T00:57:11.609+03:00 TRACE 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'characterEncodingFilter'; order=-2147483648, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration.class]
+2024-03-04T00:57:11.609+03:00 TRACE 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'formContentFilter'; order=-9900, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class]
+2024-03-04T00:57:11.609+03:00 TRACE 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Created Filter initializer for bean 'requestContextFilter'; order=-105, resource=class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]
+2024-03-04T00:57:11.610+03:00 DEBUG 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Mapping filters: springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2024-03-04T00:57:11.610+03:00 DEBUG 3892 --- [main] o.s.b.w.s.ServletContextInitializerBeans : Mapping servlets: dispatcherServlet urls=[/]
+2024-03-04T00:57:13.938+03:00  WARN 3892 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-04T00:57:13.969+03:00  WARN 3892 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2d7f925d-1524-440d-a558-edd5e000bbcb
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-03-04T00:57:14.111+03:00 TRACE 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	b.e.a.c.AuthenticationController:
+	{GET [/element/signUp]}: getSignUpPage()
+	{GET [/element/startPage]}: showStartPage()
+	{GET [/element/signIn]}: getSignInPage()
+	{POST [/element/signIn]}: signIn(AuthenticationSignInDto,BindingResult,UriComponentsBuilder)
+	{POST [/element/signUp]}: signUp(AuthenticationSignUpDto,BindingResult,UriComponentsBuilder)
+2024-03-04T00:57:14.111+03:00 TRACE 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	b.e.a.c.ChatController:
+	{GET [/element/chatPage]}: getChatPage(UUID)
+	{POST [/element/chatPage/add-folder]}: addFolder(UUID,FolderDto,UriComponentsBuilder)
+2024-03-04T00:57:14.111+03:00 TRACE 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2024-03-04T00:57:14.126+03:00 TRACE 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.a.OpenApiWebMvcResource:
+	{GET [/v3/api-docs], produces [application/json]}: openapiJson(HttpServletRequest,String,Locale)
+	{GET [/v3/api-docs.yaml], produces [application/vnd.oai.openapi]}: openapiYaml(HttpServletRequest,String,Locale)
+2024-03-04T00:57:14.126+03:00 TRACE 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.u.SwaggerWelcomeWebMvc:
+	{GET [/swagger-ui.html]}: redirectToUi(HttpServletRequest)
+2024-03-04T00:57:14.126+03:00 TRACE 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 
+	o.s.w.u.SwaggerConfigResource:
+	{GET [/v3/api-docs/swagger-config], produces [application/json]}: openapiJson(HttpServletRequest)
+2024-03-04T00:57:14.142+03:00 DEBUG 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 13 mappings in 'requestMappingHandlerMapping'
+2024-03-04T00:57:14.142+03:00 DEBUG 3892 --- [main] o.s.w.s.h.BeanNameUrlHandlerMapping      : Detected 0 mappings in 'beanNameHandlerMapping'
+2024-03-04T00:57:14.235+03:00 TRACE 3892 --- [main] o.s.w.s.f.support.RouterFunctionMapping  : 0 RouterFunction(s) in 'routerFunctionMapping'
+2024-03-04T00:57:14.235+03:00 TRACE 3892 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/webjars/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-03-04T00:57:14.235+03:00 TRACE 3892 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-03-04T00:57:14.235+03:00 TRACE 3892 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/swagger-ui*/*swagger-initializer.js] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-03-04T00:57:14.235+03:00 TRACE 3892 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped [/swagger-ui*/**] onto ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-03-04T00:57:14.235+03:00 DEBUG 3892 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-03-04T00:57:14.346+03:00 DEBUG 3892 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-03-04T00:57:14.401+03:00 DEBUG 3892 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice

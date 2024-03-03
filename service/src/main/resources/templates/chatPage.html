@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Element</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024">
+    <link rel="stylesheet" th:href="@{/css/chatPage.css}"
+          href="../static/css/chatPage.css">
+    <link rel="icon" th:href="@{/images/element_icon.png}"
+          href="../static/images/element_icon.png">
+</head>
+<body>
+
+    <div class="header">
+        <div class="header_profile">
+            <i class="fa-regular fa-user fa-loc"></i>
+        </div>
+
+        <div class="header-username">
+            <!--/*@thymesVar id="userProfile" type="by.element.app.models.user.UserProfileDto"*/-->
+            <span th:text="${userProfile.getName()}" class="header-profile">Username</span>
+        </div>
+
+        <img src="../static/images/element_logo.png"
+             th:src="@{/images/element_logo.png}" alt="logo" class="header-logo" />
+    </div>
+
+    <div class="main">
+
+        <div class="chat">
+            <div class="chat_bar">
+
+                <div class="menu_bar">
+                    <div class="menu">
+                        <div class="ava_image">
+                            <form action="#" enctype="multipart/form-data" method="POST" class="menu-form">
+                                <div class="form-file_block">
+                                    <input type="file" name="avatar" class="menu-form_file">
+                                    <i class="fa fa-camera fa-position" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="file-action">
+                                    <div class="del_btn">
+                                        <button type="reset" class="form_btn-reset">
+                                            <i class="fa fa-trash-o cross_pos" id="reset-button" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="apply_btn">
+                                        <button type="submit" class="form_btn-apply">
+                                            <i class="fa fa-check check_pos" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="list_menu">
+                            <ul>
+                                <li>
+                                    <i class="fa fa-user" id="item" aria-hidden="true"></i>
+                                    <span class="title">Profile</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <span class="title">Contacts</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                                    <span class="title">New folder</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-cog" aria-hidden="true"></i>
+                                    <span class="title">Settings</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="folders">
+                    <div class="folders_list">
+                        <!--/*@thymesVar id="folders" type="java.util.List<by.element.app.models.folder.FolderDto>"*/-->
+                            <div class="folder">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name">All chats</span>
+                            </div>
+                            <div class="folder" th:if="${!folders.isEmpty()}"
+                                th:each="folder : ${folders}">
+                                <i class="fa fa-folder folder_pl" aria-hidden="true"></i>
+                                <span class="folder_name" th:text="${folder.getFolderName()}">Usually</span>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat_rooms">
+                <div class="chats">
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                    <div class="room">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat_message">
+
+        </div>
+    </div>
+
+    <!--Modal-->
+    <!--Profile-->
+        <div class="window modal-1">
+            <div class="title">Profile</div>
+            <i class="fa fa-times window-cross modal-close" aria-hidden="true"></i>
+            <div class="content">
+                <ul>
+                    <!--/*@thymesVar id="userProfile" type="by.element.app.models.user.UserProfileDto"*/-->
+                    <li class="profile-name" th:text="'Name: ' + ${userProfile.getName()}">Name: </li>
+                    <li class="profile-surname" th:text="'Surname: ' + ${userProfile.getSurname()}">Surname:</li>
+                    <li class="profile-email" th:text="'Email: ' + ${userProfile.getEmail()}">Email:</li>
+                    <li class="profile-phone_number" th:text="'Phone number: ' + ${userProfile.getPhoneNumber()}">Phone number:</li>
+                </ul>
+            </div>
+        </div>
+
+    <!--ElementApp-->
+    <div class="window">
+        <div class="title">Contacts</div>
+        <i class="fa fa-times window-cross modal-close" aria-hidden="true"></i>
+        <div class="content">
+            <form action="#" enctype="multipart/form-data" method="POST">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="text" name="phoneNumber" class="search_input" placeholder="Phone number"/>
+                <button type="submit" class="search-form-btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!--New folder-->
+    <div class="window">
+        <div class="title">New folder</div>
+        <i class="fa fa-times window-cross modal-close" aria-hidden="true"></i>
+        <div class="content">
+            <div class="folder-link">All folders
+                <i class="fa fa-chevron-right right-icon" aria-hidden="true"></i>
+            </div>
+            <!--/*@thymesVar id="userProfile" type="by.element.app.models.user.UserProfileDto"*/-->
+            <form action="#" th:action="@{/element/chatPage/add-folder}" enctype="application/x-www-form-urlencoded" method="POST">
+                <input type="text" name="folderName" class="search_input" placeholder="Folder name"/>
+                <!--/*@thymesVar id="userId" type="java.util.UUID"*/-->
+                <button type="submit" th:name="userId" th:value="${userId}" class="search-form-btn">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="window-2">
+        <div class="title">Folders</div>
+        <i class="fa fa-times window-cross modal-close" aria-hidden="true"></i>
+        <div class="window_content">
+            <div class="chat-item"><span>All chats</span>
+                <i class="fa fa-trash-o delete-icon" aria-hidden="true"></i>
+            </div>
+            <!--/*@thymesVar id="folders" type="java.util.List<by.element.app.models.folder.FolderDto>"*/-->
+            <div class="chat-item" th:if="${!folders.isEmpty()}"
+                th:each="folder : ${folders}"><span th:text="${folder.getFolderName()}">All chats</span>
+                <i class="fa fa-trash-o delete-icon" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+    <!--Settings-->
+    <div class="window">
+        <div class="title">Settings</div>
+        <i class="fa fa-times window-cross modal-close" aria-hidden="true"></i>
+        <div class="content">
+        </div>
+    </div>
+
+    <div class="overlay overlay-modal"></div>
+
+</body>
+    <script src="https://kit.fontawesome.com/0d84691a96.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{/js/chatPage.js}"
+            src="../static/js/chatPage.js"></script>
+    <script type="text/javascript" th:src="@{/js/menuPage.js}"
+            src="../static/js/menuPage.js"></script>
+</html>
